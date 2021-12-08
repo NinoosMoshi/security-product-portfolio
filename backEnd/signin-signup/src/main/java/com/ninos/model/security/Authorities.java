@@ -21,9 +21,7 @@ public class Authorities {
     @Column(name = "role_name")
     private String roleName;
 
-
+    @ManyToMany(mappedBy = "authorities")
     private Set<User> users = new HashSet<>();
-
-
 
 }
