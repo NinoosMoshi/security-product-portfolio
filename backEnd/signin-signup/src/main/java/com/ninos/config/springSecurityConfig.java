@@ -1,5 +1,8 @@
 package com.ninos.config;
 
+import com.ninos.repository.security.UserRepository;
+import com.ninos.service.security.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -13,6 +16,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class springSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private UserService userService;
+    private UserRepository userRepository;
+
+    @Autowired
+    public springSecurityConfig(UserService userService, UserRepository userRepository) {
+        this.userService = userService;
+        this.userRepository = userRepository;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
